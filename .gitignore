@@ -1,3 +1,5 @@
 .DS_Store
 *.dat
 __pycache__/
+post.py
+test.py

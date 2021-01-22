@@ -7,15 +7,15 @@ import pickle
 import requests
 import time
 
-from inventory_helper.seller.seller_view import Ui_form_seller
-from inventory_helper.seller.sell_item import SellItem
-
+from services.seller.seller_view import Ui_form_seller
+from services.seller.seller_thread import SellerThread
 
 class SellerController(QtCore.QObject):
 	def __init__(self):
 		super().__init__()
 
 		self.context_ids = {
+			'': 0,
 			'730': 2,
 		}
 
@@ -33,6 +33,9 @@ class SellerController(QtCore.QObject):
 	def start(self, data):
 		self.data = data
 		context_id = self.analize_data()
+
+		self.ui.pb_sell.clicked.connect(self.start_selling)
+
 		self.update_form()
 		
 	def update_form(self):
@@ -41,6 +44,10 @@ class SellerController(QtCore.QObject):
 
 	def analize_data(self):
 		context_id = self.context_ids[self.data.get('app_id')]
+
+
+	def start_selling(self):
+		pass
 
 
 

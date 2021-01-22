@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>form_inventory_helper</class>
- <widget class="QWidget" name="form_inventory_helper">
+ <class>form_inventory_parser</class>
+ <widget class="QWidget" name="form_inventory_parser">
   <property name="geometry">
    <rect>
     <x>0</x>

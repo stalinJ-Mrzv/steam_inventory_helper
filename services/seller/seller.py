@@ -12,7 +12,7 @@ class Seller:
 		self.user = user
 		self.session = session
 
-	def sell(self, app_id, context_id, asset_id, amount, price):
+	def sell(self, sell_item):
 		is_send_sell_request = False
 		message = 'OK'
 
