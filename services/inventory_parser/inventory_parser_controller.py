@@ -9,7 +9,6 @@ import time
 
 from services.inventory_parser.inventory_parser_view import Ui_form_inventory_parser
 from services.inventory_parser.inventory_parser_model import InventoryLoaderThread
-from services.inventory_parser.inventory_item import InventoryItem
 
 
 class InventoryParserController(QtCore.QObject):
