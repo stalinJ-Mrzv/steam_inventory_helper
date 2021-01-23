@@ -17,11 +17,11 @@ class Seller:
 		message = 'OK'
 
 		if self.session:
-			data, headers = self.__get_basic_data()
+			data, headers = self.__get_basic_data(sell_item)
 
 			self.session.headers = headers
 			try:
-				response = session.post('https://steamcommunity.com/market/sellitem/', data=data)
+				response = self.session.post('https://steamcommunity.com/market/sellitem/', data=data)
 				json_response = response.json()
 				is_send_sell_request = json_response.get('success')
 				if not is_send_sell_request:
@@ -34,14 +34,16 @@ class Seller:
 
 		return is_send_sell_request, message
 
-	def __get_basic_data(self):
+	def __get_basic_data(self, sell_item):
+		item_data = sell_item.get_data()
+
 		data = {
 			'sessionid': self.user.session_id,
-			'appid': app_id,
-			'contextid': context_id,
-			'assetid': asset_id,
-			'amount': amount,
-			'price': price
+			'appid': item_data.get('app_id'),
+			'contextid': item_data.get('context_id'),
+			'assetid': item_data.get('asset_id'),
+			'amount': 1,
+			'price': item_data.get('price')
 		}
 
 		headers = {

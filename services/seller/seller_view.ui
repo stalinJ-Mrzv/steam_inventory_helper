@@ -77,7 +77,7 @@
     <string>Sell items</string>
    </property>
   </widget>
-  <widget class="QLabel" name="lb_amount">
+  <widget class="QLabel" name="lb_count">
    <property name="geometry">
     <rect>
      <x>20</x>
@@ -87,10 +87,10 @@
     </rect>
    </property>
    <property name="text">
-    <string>Amount:</string>
+    <string>Count:</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="le_amount">
+  <widget class="QLineEdit" name="le_count">
    <property name="geometry">
     <rect>
      <x>113</x>
@@ -143,6 +143,19 @@
    </property>
    <property name="placeholderText">
     <string>...</string>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="cb_select_item">
+   <property name="geometry">
+    <rect>
+     <x>110</x>
+     <y>10</y>
+     <width>245</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <property name="currentIndex">
+    <number>-1</number>
    </property>
   </widget>
  </widget>

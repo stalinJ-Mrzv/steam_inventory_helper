@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'inventory_helper/seller/seller_view.ui'
+# Form implementation generated from reading ui file 'services/seller/seller_view.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.2
 #
@@ -17,13 +17,9 @@ class Ui_form_seller(object):
         form_seller.resize(550, 450)
         form_seller.setMinimumSize(QtCore.QSize(550, 450))
         form_seller.setMaximumSize(QtCore.QSize(550, 450))
-        self.cb_select_item = QtWidgets.QComboBox(form_seller)
-        self.cb_select_item.setGeometry(QtCore.QRect(110, 7, 250, 26))
-        self.cb_select_item.setCurrentText("")
-        self.cb_select_item.setObjectName("cb_select_item")
-        self.lb_select_item = QtWidgets.QLabel(form_seller)
-        self.lb_select_item.setGeometry(QtCore.QRect(20, 10, 81, 16))
-        self.lb_select_item.setObjectName("lb_select_item")
+        self.lb_item_name = QtWidgets.QLabel(form_seller)
+        self.lb_item_name.setGeometry(QtCore.QRect(20, 10, 81, 16))
+        self.lb_item_name.setObjectName("lb_item_name")
         self.lb_process = QtWidgets.QLabel(form_seller)
         self.lb_process.setGeometry(QtCore.QRect(20, 110, 71, 21))
         self.lb_process.setObjectName("lb_process")
@@ -34,12 +30,12 @@ class Ui_form_seller(object):
         self.pb_sell = QtWidgets.QPushButton(form_seller)
         self.pb_sell.setGeometry(QtCore.QRect(195, 400, 160, 41))
         self.pb_sell.setObjectName("pb_sell")
-        self.lb_amount = QtWidgets.QLabel(form_seller)
-        self.lb_amount.setGeometry(QtCore.QRect(20, 40, 91, 21))
-        self.lb_amount.setObjectName("lb_amount")
-        self.le_amount = QtWidgets.QLineEdit(form_seller)
-        self.le_amount.setGeometry(QtCore.QRect(113, 40, 241, 21))
-        self.le_amount.setObjectName("le_amount")
+        self.lb_count = QtWidgets.QLabel(form_seller)
+        self.lb_count.setGeometry(QtCore.QRect(20, 40, 91, 21))
+        self.lb_count.setObjectName("lb_count")
+        self.le_count = QtWidgets.QLineEdit(form_seller)
+        self.le_count.setGeometry(QtCore.QRect(113, 40, 241, 21))
+        self.le_count.setObjectName("le_count")
         self.le_price = QtWidgets.QLineEdit(form_seller)
         self.le_price.setGeometry(QtCore.QRect(113, 70, 241, 21))
         self.le_price.setObjectName("le_price")
@@ -50,6 +46,9 @@ class Ui_form_seller(object):
         self.pte_process.setGeometry(QtCore.QRect(5, 140, 540, 250))
         self.pte_process.setReadOnly(True)
         self.pte_process.setObjectName("pte_process")
+        self.cb_select_item = QtWidgets.QComboBox(form_seller)
+        self.cb_select_item.setGeometry(QtCore.QRect(110, 10, 245, 26))
+        self.cb_select_item.setObjectName("cb_select_item")
 
         self.retranslateUi(form_seller)
         self.cb_select_item.setCurrentIndex(-1)
@@ -58,11 +57,11 @@ class Ui_form_seller(object):
     def retranslateUi(self, form_seller):
         _translate = QtCore.QCoreApplication.translate
         form_seller.setWindowTitle(_translate("form_seller", "Inventory parser"))
-        self.lb_select_item.setText(_translate("form_seller", "Select item:"))
+        self.lb_item_name.setText(_translate("form_seller", "Item name:"))
         self.lb_process.setText(_translate("form_seller", "Process:"))
         self.pb_sell.setText(_translate("form_seller", "Sell items"))
-        self.lb_amount.setText(_translate("form_seller", "Amount:"))
-        self.le_amount.setPlaceholderText(_translate("form_seller", "1"))
+        self.lb_count.setText(_translate("form_seller", "Count:"))
+        self.le_count.setPlaceholderText(_translate("form_seller", "1"))
         self.le_price.setPlaceholderText(_translate("form_seller", "1"))
         self.lb_price.setText(_translate("form_seller", "Price ($):"))
         self.pte_process.setPlaceholderText(_translate("form_seller", "..."))
