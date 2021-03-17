@@ -138,6 +138,12 @@
      <height>250</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <family>PT Serif</family>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
    <property name="readOnly">
     <bool>true</bool>
    </property>
