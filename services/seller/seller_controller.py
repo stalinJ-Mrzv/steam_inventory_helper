@@ -105,7 +105,6 @@ class SellerController(QtCore.QObject):
 			try:
 				count = int(count_str)
 				item_data = self.data.get('items')[item_index].get_data()
-				print(len(item_data.get('ids')))
 				if count > len(item_data.get('ids')):
 					title = 'Count error'
 					msg = 'Too many count'
@@ -128,7 +127,6 @@ class SellerController(QtCore.QObject):
 		return status, title, msg, item_index, count, price_str
 
 	def inc_progress(self, value, status, message):
-		time.sleep(0.05)
 		self.ui.pb_progress.setValue(value)
 		self.append_process_text('[' + str(status) + ']: ' + message)
 
