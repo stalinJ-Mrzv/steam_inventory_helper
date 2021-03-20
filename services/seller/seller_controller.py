@@ -10,6 +10,17 @@ from services.seller.sell_item import SellItem
 
 from services.inventory_parser.inventory_parser_model import InventoryLoaderThread
 
+
+class SellerWindow(QtWidgets.QMainWindow):
+	def __init__(self, seller_thread):
+		super().__init__()
+		self.seller_thread = seller_thread
+
+	# TEST THIS
+	def closeEvent(self, event):
+		self.seller_thread.terminate()
+		self.seller_thread.wait()
+
 class SellerController(QtCore.QObject):
 	def __init__(self):
 		super().__init__()
@@ -19,16 +30,27 @@ class SellerController(QtCore.QObject):
 			'730': 2,
 		}
 
+		self.user = None
+		self.session = None
+		self.init_seller_thread()
+
 		self.init_ui_form()
 
 	def init_ui_form(self):
-		self.form = QtWidgets.QMainWindow()
+		self.form = SellerWindow(self.seller_thread)
+
 		self.ui = Ui_form_seller()
 		self.ui.setupUi(self.form)
 
 	def set_user_data(self, user, session):
 		self.user = user
 		self.session = session
+		self.seller_thread.set_user_data(self.user, self.session)
+
+	def init_seller_thread(self):
+		self.seller_thread = SellerThread(self.user, self.session)
+		self.seller_thread.progress_signal.connect(self.inc_progress)
+		self.seller_thread.complete_signal.connect(self.end_selling)
 
 	def start(self, data):
 		self.data = data
@@ -79,11 +101,9 @@ class SellerController(QtCore.QObject):
 			self.ui.pb_sell.setEnabled(False)
 			self.ui.pb_sell.setText('Wait, selling...')
 
-			seller_thread = SellerThread(self.user, self.session, sell_items)
-			seller_thread.progress_signal.connect(self.inc_progress)
-			seller_thread.complete_signal.connect(self.end_selling)
-			seller_thread.start()
-			seller_thread.wait(1)
+			self.seller_thread.set_sell_items(sell_items)
+			self.seller_thread.start()
+			self.seller_thread.wait(1)
 
 			self.update_form()
 
@@ -131,6 +151,7 @@ class SellerController(QtCore.QObject):
 		self.append_process_text('[' + str(status) + ']: ' + message)
 
 	def end_selling(self):
+
 		self.ui.pb_sell.setEnabled(True)
 		self.ui.pb_sell.setText('Sell')
 		self.update_form()
@@ -145,7 +166,8 @@ class SellerController(QtCore.QObject):
 		self.ui.pb_sell.setText('Wait, loading...')
 
 		inventory_loader_thread.start()
-		inventory_loader_thread.wait(1)
+		inventory_loader_thread.wait()
+		inventory_loader_thread.quit()
 
 		self.update_form()
 
@@ -159,7 +181,6 @@ class SellerController(QtCore.QObject):
 		self.append_process_text('Inventory loaded')
 
 		self.update_form()
-
 
 	def fill_items_for_selection(self, items):
 		self.ui.cb_select_item.clear()
