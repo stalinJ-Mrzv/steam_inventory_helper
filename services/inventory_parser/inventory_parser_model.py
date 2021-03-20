@@ -134,7 +134,7 @@ class InventoryLoaderThread(QThread):
 			self.__send_error_message('requests.exceptions.RequestException', str(e))
 
 		except Exception as e:
-			self.__send_error_message('Exception', str(e))
+			self.__send_error_message('Something gone wrong', 'Try again later.\n{}'.format(str(e)))
 
 	def __start_getting_price_thread(self):
 		thread1 = GetPriceThread(self.items, self.app_id)
