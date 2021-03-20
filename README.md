@@ -13,7 +13,7 @@ To use this program you have to pre-set folowing packages:
 * python (ver. 3.9.2)
 * PyQt5 (ver. 5.15.3) (use pip to install)
 * steam (ver. 1.2.0) (use pip to install)
-* requests (ver. 2.25.1)
+* requests (ver. 2.25.1) (use pip to install)
 
 ## Run
 To run this program you have to do this folowing things:
